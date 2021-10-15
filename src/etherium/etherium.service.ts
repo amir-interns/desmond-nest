@@ -1,0 +1,16 @@
+import { Get, Injectable, Optional } from '@nestjs/common';
+const Web3 = require('web3');
+const web3 = new Web3('wss://mainnet.infura.io/ws/v3/3f22f5d2f7294954b59850c7c8e08875');
+@Injectable()
+export class EtheriumService {
+    
+    
+     getBalance(address: string) {
+        
+        return web3.eth.getBalance(address)
+        
+    }
+
+    
+
+}
