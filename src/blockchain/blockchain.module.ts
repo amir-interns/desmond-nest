@@ -1,15 +1,17 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
+import { BitcoinService } from './bitcoin.service';
 import { BlockchainController } from './blockchain.controller';
-import { BitcoinModule } from 'src/bitcoin/bitcoin.module';
-import { EtheriumModule } from 'src/etherium/etherium.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { BalanceRequest } from './blockchain.entity';
+import { EtheriumService } from './etherium.service';
 import { BlockchainService } from './blockchain.service';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { BlockchainEntity } from './blockchain.entity';
 
 @Module({
-    providers: [BlockchainService],
+    imports: [TypeOrmModule.forFeature( [ BlockchainEntity ])],
+    providers: [ BitcoinService, EtheriumService, BlockchainService ],
     controllers: [BlockchainController],
-    imports: [BitcoinModule, EtheriumModule, TypeOrmModule.forFeature([BalanceRequest])]
 })
-export class BlockchainModule {}
+export class BlockchainModule {
+    
+
+}

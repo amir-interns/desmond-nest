@@ -1,27 +1,24 @@
-
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class BalanceRequest {
+export class BlockchainEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
-  ip: string;
+  txHash: string;
 
   @Column()
-  address: string;
-
-  @Column()
-  type: string;
+  status: string;
 
   @Column({type: 'jsonb',
            default: () => "'[]'"})
   result: string;
 
   @Column()
-  createdAt: Date;
+  typeCoin: string;
 
   @Column()
-  updatedAt: Date;
+  date: Date;
+
 }
